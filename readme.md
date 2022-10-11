@@ -1,6 +1,8 @@
 unisocks r&d
 ============
 
+🔥 reach out if you want to build this together 🔥
+
 Why unisocks mechanism?
 
  - Built-in liquidity.
