@@ -192,12 +192,17 @@ contract probon {
     // Get the pool shares for a staker.
     function getPoolShares(address staker) public view returns (uint256) {
         uint256 amount = this.farmingPod.farmed(staker);
-        // The amount is scaled, so at t=0, it is \sqrt{amount}, and at t=1, it is amount.
-        // In LaTeX: \sqrt{amount} + (amount - \sqrt{amount}) * (t - t_0) / (t_1 - t_0)
-        // Converted to Solidity: sqrt(amount) + (amount - sqrt(amount)) * (t - t_0) / (t_1 - t_0)
-        // where t_0 is the start of the fundraising period, and t_1 is the end of the fundraising period.
-        // and t is the current time.
-        return sqrt(amount) + (amount - sqrt(amount)) * (block.timestamp - this.fundraising_period[0]) / (this.fundraising_period[1] - this.fundraising_period[0]);
+        // Quadratic funding formula.
+        // For any given project, take the square root of each contributor's contribution, add these values together, and take the square of the result.
+        // This is the total amount of funding that the project will receive.
+        // Converted to python pseudocode:
+        // sqrt(sum([sqrt(x) for x in contributions])) ** 2
+        // Converted to Latex:
+        // \sqrt{\sum_{i=1}^{n} \sqrt{x_i}}^2
+        
+        // In LaTeX: 
+        // return sqrt(amount) + (amount - sqrt(amount)) * (block.timestamp - this.fundraising_period[0]) / (this.fundraising_period[1] - this.fundraising_period[0]);
+        
     }
 
     // Convert your pool shares into NFT's, after the fundraising period has ended.
