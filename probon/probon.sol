@@ -22,7 +22,6 @@
 // so if they committed 0.5 ETH, and the total capital committed was 5 ETH, and the supply allocated was 100 NFT's, the price of each NFT is 5/100=0.05 ETH. So they would receive 10 NFT's.
 // however, if they committed 0.56 ETH, and the total capital committed was 5 ETH, and the supply allocated was 100 NFT's, the price of each NFT is 5/100=0.05 ETH. So they would receive 11 NFT's. And a small refund of 0.01 ETH.
 
-
 // what's the idea here?
 // it allows people to fundraise without knowing what price to raise at.
 // 1. a fundraiser creates a pool, setting an initial total supply of NFT's, and minimum commitment
@@ -202,7 +201,7 @@ contract probon {
         
         // In LaTeX: 
         // return sqrt(amount) + (amount - sqrt(amount)) * (block.timestamp - this.fundraising_period[0]) / (this.fundraising_period[1] - this.fundraising_period[0]);
-        
+
     }
 
     // Convert your pool shares into NFT's, after the fundraising period has ended.
